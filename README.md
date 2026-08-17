@@ -1,2 +1,2 @@
 # Linux-Alias
-Alias úteis para linux/ Scripts
+Alias/Scripts/Configurações úteis para Linux
