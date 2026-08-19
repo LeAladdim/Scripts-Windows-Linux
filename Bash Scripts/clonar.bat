@@ -11,7 +11,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-echo === CLONAR REPOSITORIO ===
+echo === Clonar Repos ===
 set /p "repo_url=Cole a URL do repositorio: "
 set /p "token=Cole o seu Token PAT do GitHub: "
 set /p "destino=Arraste a pasta do PC onde quer salvar o projeto: "
@@ -40,7 +40,7 @@ if %errorlevel% neq 0 goto ERRO_CLONE
 
 echo.
 echo ==========================================
-echo    Download concluido com sucesso!
+echo    Repositório Baixado
 echo ==========================================
 echo.
 pause
