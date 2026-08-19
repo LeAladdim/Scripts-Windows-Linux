@@ -11,7 +11,10 @@ Execute o Git Portable e escolha a pasta de destino Git no seu pendrive
 4° Etapa 
 Salve os Bash Scripts e o.gitignore.txt na raiz do seu Pendrive.
 
-5° Etapa 
+5° Etapa
+Lembre-se de gerar um Token no Github de acesso vitalício e o ter sempre a mão (NÃO COMPARTILHE SEU TOKEN). Você vai precisar dele para clonar seu repositório.
+
+6° Etapa 
 Execute no terminal da sua IDE de preferência que possua terminal integrado (como Intelijj) os programas a partir do caminho (Deve ficar algo como: D:\clonar.bat, a depender da letra do seu pendrive) e seguir o processo 
 
 Bom Proveito
