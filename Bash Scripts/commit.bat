@@ -13,8 +13,8 @@ if %errorlevel% neq 0 (
 
 git config --global --add safe.directory "*"
 
-echo === SALVAR E ENVIAR ALTERACOES ===
-set /p "caminho=Arraste a pasta do projeto no PC para ca (ou digite o caminho): "
+echo === Bash Commit ===
+set /p "caminho=Arraste a pasta do projeto no PC: "
 set "caminho=%caminho:"=%"
 
 if not exist "%caminho%" (
@@ -34,7 +34,7 @@ if not exist ".git" (
     exit /b 1
 )
 
-:: Sobrescreve forçadamente o .gitignore do projeto pelo gitignore.txt do pendrive
+
 if exist "%~dp0gitignore.txt" copy /y "%~dp0gitignore.txt" ".gitignore" >nul
 
 git add .
@@ -52,7 +52,7 @@ if %errorlevel% neq 0 goto ERRO_PUSH
 
 echo.
 echo ==========================================
-echo    Alteracoes enviadas com sucesso!
+echo    Repo Commitado, GG
 echo ==========================================
 echo.
 pause
