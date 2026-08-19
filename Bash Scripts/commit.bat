@@ -34,6 +34,7 @@ if not exist ".git" (
     exit /b 1
 )
 
+if exist "%~dp0gitignore.txt" copy /y "%~dp0gitignore.txt" ".gitignore" >nul
 git add .
 
 set /p "msg=Digite a mensagem do commit: "
