@@ -17,4 +17,4 @@ Lembre-se de gerar um Token no Github de acesso vitalício e o ter sempre a mão
 6° Etapa 
 Execute no terminal da sua IDE de preferência que possua terminal integrado (como Intelijj) os programas a partir do caminho (Deve ficar algo como: D:\clonar.bat, a depender da letra do seu pendrive) e seguir o processo 
 
-Bom Proveito
+Bom Proveito, agora você consegue clonar seus repositórios em qualquer pc sem login, mesmo que ele não tenha Git instalado ou precise de permissões especiais.
