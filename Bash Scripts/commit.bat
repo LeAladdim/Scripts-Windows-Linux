@@ -1,76 +1,67 @@
-#!/bin/bash
+@echo off
+set "PATH=%~dp0Git\cmd;%~dp0Git\bin;C:\Program Files\Git\cmd;%PATH%"
 
-if ! command -v git &> /dev/null; then
-    echo ""
-    echo "----------------------------------------------------"
-    echo "[ERRO] O comando 'git' não foi encontrado no sistema!"
-    echo "Instale o Git no Linux usando: sudo apt install git"
-    echo "----------------------------------------------------"
-    echo ""
-    read -p "Pressione Enter para sair..."
-    exit 1
-fi
+where git >nul 2>nul
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERRO] O Git nao foi encontrado!
+    echo Certifique-se de que a pasta Git Portable esta na raiz do pendrive.
+    echo.
+    pause
+    exit /b 1
+)
 
 git config --global --add safe.directory "*"
 
-echo "=== SALVAR E ENVIAR ALTERAÇÕES ==="
-read -p "Arraste a pasta do projeto no PC para cá (ou digite o caminho): " caminho
-caminho=$(echo "$caminho" | tr -d "'\"")
+echo === SALVAR E ENVIAR ALTERACOES ===
+set /p "caminho=Arraste a pasta do projeto no PC para ca (ou digite o caminho): "
+set "caminho=%caminho:"=%"
 
-if [ ! -d "$caminho" ]; then
-    echo ""
-    echo "----------------------------------------------------"
-    echo "[ERRO] A pasta '$caminho' não foi encontrada!"
-    echo "----------------------------------------------------"
-    read -p "Pressione Enter para sair..."
-    exit 1
-fi
+if not exist "%caminho%" (
+    echo.
+    echo [ERRO] A pasta nao foi encontrada!
+    pause
+    exit /b 1
+)
 
-cd "$caminho" || {
-    echo "[ERRO] Não foi possível acessar a pasta: $caminho"
-    read -p "Pressione Enter para sair..."
-    exit 1
-}
+cd /d "%caminho%"
 
-if [ ! -d ".git" ]; then
-    echo ""
-    echo "----------------------------------------------------"
-    echo "[ERRO] Esta pasta não é um repositório Git!"
-    echo "Certifique-se de selecionar a pasta raiz do projeto."
-    echo "----------------------------------------------------"
-    read -p "Pressione Enter para sair..."
-    exit 1
-fi
+if not exist ".git" (
+    echo.
+    echo [ERRO] Esta pasta nao e um repositorio Git valido!
+    echo Selecione a pasta raiz onde o projeto foi clonado.
+    pause
+    exit /b 1
+)
 
-# Sobrescreve forçadamente o .gitignore do projeto pelo gitignore.txt do pendrive
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ -f "$SCRIPT_DIR/gitignore.txt" ]; then
-    cp -f "$SCRIPT_DIR/gitignore.txt" .gitignore
-fi
+:: Sobrescreve forçadamente o .gitignore do projeto pelo gitignore.txt do pendrive
+if exist "%~dp0gitignore.txt" copy /y "%~dp0gitignore.txt" ".gitignore" >nul
 
 git add .
 
-read -p "Digite a mensagem do commit: " msg
-if [ -z "$msg" ]; then
-    msg="Atualização automática"
-fi
+set /p "msg=Digite a mensagem do commit: "
+if "%msg%"=="" set "msg=Atualizacao automatica"
 
-git commit -m "$msg"
+git commit -m "%msg%"
 
-echo ""
-echo "Enviando alterações para o GitHub..."
+echo.
+echo Enviando alteracoes para o GitHub...
+git push origin main --force
 
-if git push origin main --force; then
-    echo ""
-    echo "=========================================="
-    echo "   Alterações enviadas com sucesso!"
-    echo "=========================================="
-else
-    echo ""
-    echo "----------------------------------------------------"
-    echo "[ERRO] Falha ao enviar para o GitHub!"
-    echo "----------------------------------------------------"
-fi
+if %errorlevel% neq 0 goto ERRO_PUSH
 
-echo ""
-read -p "Pressione Enter para finalizar..."
+echo.
+echo ==========================================
+echo    Alteracoes enviadas com sucesso!
+echo ==========================================
+echo.
+pause
+exit /b 0
+
+:ERRO_PUSH
+echo.
+echo [ERRO] Falha ao enviar para o GitHub!
+echo Verifique se a branch e main, se o Token tem permissao e sua conexao.
+echo.
+pause
+exit /b 1
