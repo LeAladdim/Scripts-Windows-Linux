@@ -1,2 +1,3 @@
-# Linux-Alias
-Alias/Scripts/Configurações úteis para Linux
+# Scripts Windows & Linux
+
+Scripts/Configurações úteis para Linux & Windows, desde automações até atalhos gerais
