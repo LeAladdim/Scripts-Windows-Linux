@@ -1,3 +1,20 @@
-# Scripts Windows & Linux
+1° Etapa
+Baixe o GIT PORTABLE nesse link
+https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.4/PortableGit-2.55.0.4-64-bit.7z.exe
 
-Scripts/Configurações úteis para Linux & Windows, desde automações até atalhos gerais
+2° Etapa 
+Crie no seu pendrive uma pasta nomeada Git
+
+3° Etapa
+Execute o Git Portable e escolha a pasta de destino Git no seu pendrive
+
+4° Etapa 
+Salve os Bash Scripts e o.gitignore.txt na raiz do seu Pendrive.
+
+5° Etapa
+Lembre-se de gerar um Token no Github de acesso vitalício e o ter sempre a mão dentro do arquivo token.txt (NÃO COMPARTILHE SEU TOKEN E DEIXE APENAS ELE NO ARQUIVO). Você vai precisar dele para clonar seu repositório
+
+6° Etapa 
+Execute no terminal da sua IDE de preferência que possua terminal integrado (como Intelijj) os programas a partir do caminho (Deve ficar algo como: D:\clonar.bat, a depender da letra do seu pendrive) e seguir o processo 
+
+Bom Proveito, agora você consegue clonar seus repositórios em qualquer pc sem login, mesmo que ele não tenha Git instalado ou precise de permissões especiais.
