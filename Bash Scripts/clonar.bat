@@ -5,22 +5,34 @@ where git >nul 2>nul
 if %errorlevel% neq 0 (
     echo.
     echo [ERRO] O Git nao foi encontrado!
-    echo Certifique-se de que a pasta Git Portable esta na raiz do pendrive.
+    echo Git Portable precisa estar baixado no pendrive.
     echo.
     pause
     exit /b 1
 )
 
-echo === Bash Clone Repos ===
+echo *** Bash Clone Repo ***
 set /p "repo_url=Cole a URL do repositorio: "
-set /p "token=Cole o seu Token PAT do GitHub: "
-set /p "destino=Arraste a pasta do PC onde quer salvar o projeto: "
 
+set "TOKEN_FILE=%~dp0token.txt"
+set "token="
+
+if exist "%TOKEN_FILE%" set /p token=<"%TOKEN_FILE%"
+
+if "%token%"=="" (
+    set /p "token=Cole o seu Token PAT do GitHub: "
+    if not "%token%"=="" (
+        echo %token%>"%TOKEN_FILE%"
+        echo Token salvo com sucesso em token.txt no pendrive!
+    )
+)
+
+set /p "destino=Arraste a pasta em que vai salvar o projeto: "
 set "destino=%destino:"=%"
 
 if "%destino%"=="" (
     echo.
-    echo [ERRO] O caminho de destino nao pode estar vazio!
+    echo [ERRO] O caminho não pode ficar vazio>
     pause
     exit /b 1
 )
@@ -39,16 +51,16 @@ git clone %auth_url%
 if %errorlevel% neq 0 goto ERRO_CLONE
 
 echo.
-echo ==========================================
-echo    Repositório Baixado
-echo ==========================================
+echo ******************************************
+echo        Repo Baixado, GGWP
+echo ******************************************
 echo.
 pause
 exit /b 0
 
 :ERRO_CLONE
 echo.
-echo [ERRO] Falha ao clonar o repositorio!
+echo [ERRO] Falha ao clonar o repositorio
 echo Verifique a URL, seu Token PAT e a conexao de internet.
 echo.
 pause
