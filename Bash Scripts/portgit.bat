@@ -6,7 +6,7 @@ set "PATH=%~dp0Git\cmd;%~dp0Git\bin;%PATH%"
 git --version >nul 2>&1
 if errorlevel 1 (
     echo Git nao encontrado
-    echo Certifique-se de que a pasta "Git" esta exatamente no mesmo local deste script:
+    echo Certifique-se de que a pasta "Git" esta exatamente no mesmo local deste script
     echo %~dp0
     pause
     exit
