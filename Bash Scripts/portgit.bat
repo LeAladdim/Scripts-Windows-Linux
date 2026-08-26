@@ -214,11 +214,6 @@ git merge %br%
 git push origin HEAD
 pause & goto MENU
 
-
-:: ==========================================
-:: FUNCOES AUXILIARES
-:: ==========================================
-
 :GET_CAMINHO
 echo.
 echo Qual a pasta do projeto?
